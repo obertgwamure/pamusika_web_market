@@ -1,0 +1,43 @@
+{% extends 'pamusika_web_market/base.html' %}
+
+{% block title %} New Conversation {% endblock %}
+
+
+{% block content %}
+<div class="grey-color">
+	<h3 class=" my-3 mx-3">New Conversation</h3>
+</div>
+<p class="pt-2 my-3 mx-3">You are about to start a new converation with: <span class="text-danger">{{ owner }}</span></p>
+<p class="pt-2 my-3 mx-3">Item you are interested in: <span class="text-danger">{{ item }}</span></p>
+<main class="form-signup w-100 m-auto mx-3">
+	<form method="POST" action="." >
+		
+		{% csrf_token %}
+		<div class="form-floating ">
+			<div class="container-fluid ">
+				<div class="col-lg-1 mb-2">
+					<label>Message:</label>
+				</div>
+				<div class="col-lg-6">
+					{{form.content}}
+				</div>
+			</div>
+
+			{% if form.errors or form.non_field_errors%}
+			{% for field in form %}
+			{{field.errors}}
+			{% endfor %}
+
+			{{form.non_field_errors}}
+			{% endif %}
+		<div class="col-lg-6">
+			<div class="text-center">
+				<button class="w-10 mt-4 mb-5 btn btn-lg btn-success" type="submit">
+					Send
+				</button>
+			</div>
+		</div>
+	</form>
+</main>
+
+{% endblock %}

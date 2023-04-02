@@ -1,0 +1,35 @@
+{% extends 'pamusika_web_market/base.html' %}
+
+{% block title %} New Conversation {% endblock %}
+
+
+{% block content %}
+<div class="grey-color">
+    <h3 class=" my-3 mx-3">Conversations</h3>
+</div>
+<main class=" w-100 m-auto mx-3">
+    {% for conversation in conversations %}
+        <div class="container-fluid grey-color m-3">
+            <a class="links" href="{% url 'conversation:detail' conversation.id%}">
+                <div class="row">
+                    <div class="col-lg-1">
+                        <img class="img-fluid" src="{{ conversation.item.image.url }}" alt="{{conversation.item}} image" />
+                    </div>
+                    <div class="col-lg-8">
+                        {% for member in conversation.members.all %}
+                        {% if member != request.user %}
+                        <p class="mb-4"><strong>{{ member.username}}</strong> | <span class="text-muted">{{ conversation.modified_at }}</span></p>
+                        <p>{{ conversation.item }}</p>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </a>
+            
+
+        </div>
+    {% endfor %}
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.newest-items h1 {
+    font-weight: 700;
+}
+
+.newest-items img {
+    border-radius: 20px;
+}
+
+    .newest-items img:hover {
+        box-shadow: -2px -1px 25px -4px rgb(0,0,0,0.75);
+        -webkit-box-shadow: -2px -1px 25px -4px rgb(0,0,0,0.75);
+        -moz-box-shadow: -2px -1px 25px -4px rgb(0,0,0,0.75);
+    }

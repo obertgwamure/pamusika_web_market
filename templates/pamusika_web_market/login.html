@@ -1,0 +1,51 @@
+{% extends 'pamusika_web_market/base.html' %}
+
+
+{% block title %} Login {% endblock%}
+
+{% block content %}
+<div class="container-fluid  grey-color">
+    <div class="row">
+        <div class="col-lg-3 m-auto">
+            <main class="form-signup w-100 m-auto">
+                <form method="POST" action=".">
+                    {% csrf_token %}
+                    <h1 class="mb-4 mt-5 text-center">Pamusika</h1>
+                    <h2 class="h3 mb-4 fw-normal text-center">Please Log in</h2>
+
+                    <div class="form-floating">
+
+                        <div class="mt-1">
+                            <label for="floatingPassword">Username</label>
+                            {{form.username}}
+                        </div>
+
+                    </div>
+                    <div class="form-floating">
+                        <div class="mt-1">
+                            <label for="floatingPassword">Password</label>
+                            {{form.password}}
+
+                        </div>
+                    {% if form.errors or form.non_field_errors%}
+                    {% for field in form %}
+                    {{field.errors}}
+                    {% endfor %}
+
+                    {{form.non_field_errors}}
+                    {% endif %}
+
+                    <div class="checkbox mb-3 mt-3 text-center">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+                    <p class="text-center mt-5 mb-3 text-muted">pamusika&copy;2023</p>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

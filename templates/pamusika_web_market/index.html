@@ -1,0 +1,64 @@
+{% extends 'pamusika_web_market/base.html' %}
+
+
+{% block title %} Home {% endblock%}
+
+{% block content %}
+<section class="newest-items">
+    <div class="container py-5 pt-3">
+        <div class="row py-5">
+            <div class="col-lg-5 m-auto text-center">
+                <h1>Newest Items</h1>
+                <h6 style="color:red">Just in...</h6>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-lg-8 m-auto grey-color">
+                <div class="row text-center pt-5 px-5">
+                    {% for item in items %}
+                    <div class="col-lg-4 mb-5 box-shadow">
+                        <a class="links" href="{% url 'item:detail' item.id %}">
+                            <img src="{{item.image.url}}" class="img-fluid" alt="photo of {{item}}" />
+                            <h5>NEW</h5>
+                            <h6>{{item}}</h6>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="Categories">
+    <div class="container py-5">
+        <div class="row py-5">
+            <div class="col-lg-5 m-auto text-center">
+                <h1>Categories</h1>
+                <h6 style="color:red">Enjoy Organised Shopping with us...</h6>
+            </div>
+        </div>
+        <div class="row pt-5">
+            <div class="col-lg-10 m-auto grey-color p-5">
+                <div class="row">
+                    {% for category in categories%}
+                    <div class="col-lg-4 ">
+                        <div class="card border=0 bg-light mb-2">
+                            <div class="card-body box-shadow">
+                                <a class="links" href="{% url 'item:browse_items' %}?query={{query}}&category={{category.id}}">
+                                    <div class="">
+                                        <h4>{{category}}</h4>
+                                        <p>{{category.items.count}} items</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
