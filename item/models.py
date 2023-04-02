@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 # Creating models for items.
 
 class Category(models.Model):
+    """This  class inherits from django models to create a custom category objects
+    Django ORM is them used in the background to create the SQL table
+    """
     name = models.CharField(max_length=255)
 
     # setting up class name plural
@@ -17,6 +20,9 @@ class Category(models.Model):
         return self.name
 
 class Item(models.Model):
+    """This  class inherits from django models to create a custom Item objects
+    Django ORM is them used in the background to create the SQL table
+    """
     # linking the item to a category from the database.
     # on_delete modles.CASCADE means all items are deleted when the creator is deleted.
     category = models.ForeignKey(Category, related_name='items', on_delete=models.CASCADE)

@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 
 # creating a form classes
 class LoginForm(AuthenticationForm):
+    """This  class inherits from django.contrib.auth.forms to create a custom form object for Login
+    class directly inherits from AuthenticationForm
+    """
     # customising form fields
     username = forms.CharField(widget=forms.TextInput(attrs={
             'placeholder': 'username',
@@ -22,6 +25,9 @@ class LoginForm(AuthenticationForm):
 
 
 class SignupForm(UserCreationForm):
+    """This  class inherits from django.contrib.auth.forms to create a custom form object for Login
+    class directly inherits from UserCreationForm
+    """
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')

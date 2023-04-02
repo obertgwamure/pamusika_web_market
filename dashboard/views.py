@@ -7,6 +7,14 @@ from item.models import Item
 
 @login_required
 def index(request):
+    """This  Method uses a decorator to ensure that users can only access dashboard when logged in
+
+        :param request: HTTP protocol request
+
+        :returns: renders the dashboard/index.html file
+
+        :rtype: render
+    """
     items = Item.objects.filter(created_by=request.user)
 
     return render(request, 'dashboard/index.html', {

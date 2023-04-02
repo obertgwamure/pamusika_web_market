@@ -5,6 +5,8 @@ from . models import Item
 
 # creating a form classes
 class NewItemForm(forms.ModelForm):
+    """This  class inherits from django forms to create a custom form object for new items
+    """
     class Meta:
         model = Item
         fields = ('category', 'name', 'description', 'price', 'image',)
@@ -28,6 +30,8 @@ class NewItemForm(forms.ModelForm):
             }
 
 class EditItemForm(forms.ModelForm):
+    """This  class inherits from django forms to create a custom form object for edited items
+    """
     class Meta:
         model = Item
         fields = ('name', 'description', 'price', 'image', 'is_sold')

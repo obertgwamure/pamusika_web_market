@@ -7,6 +7,14 @@ from .forms import NewItemForm, EditItemForm
 # Item views
 
 def browse_items(request):
+     """This  creates a view for the users to browse items
+
+        :param request: HTTP protocol request
+
+        :returns: renders the item/browse_items.html file
+
+        :rtype: render
+    """
     query = request.GET.get('query', '')
     category_id = request.GET.get('category', 0)
     categories = Category.objects.all()
@@ -30,6 +38,14 @@ def browse_items(request):
 
 
 def detail(request, pk):
+    """This  creates a view for the users to see a selected item's details
+
+        :param request: HTTP protocol request
+
+        :returns: renders the 'item/detail.html' file
+
+        :rtype: render
+    """
     #getting item from database
     item = get_object_or_404(Item, pk=pk)
 
@@ -44,6 +60,15 @@ def detail(request, pk):
 
 @login_required
 def new(request):
+    """This  creates a view for the users add new items.
+    A Django decorator is used to ensure the user is logged in first.
+
+        :param request: HTTP protocol request
+
+        :returns: renders the 'item/item_form.html' file
+
+        :rtype: render
+    """
     if request.method == 'POST':
         form = NewItemForm(request.POST, request.FILES)
 
