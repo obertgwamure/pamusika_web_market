@@ -1,0 +1,78 @@
+{% extends 'pamusika_web_market/base.html' %}
+
+
+{% block title %} Browse Items {% endblock%}
+
+{% block content %}
+<section class="Browse">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-1 dashboard">
+                <div class="flex-shrink-0" style="width: 280px;">
+                    
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <form action="{% url 'item:browse_items'%}" method="get">
+                                <input name="query" type="text" value="{{query}}" class="form-control mb-2" id="floatingInput" placeholder="Search">
+                                <button class="w-25 btn btn-sm btn-primary m-auto">Search</button>
+                            </form>
+                        </li>
+
+                        <li class="mb-1">
+                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#Category-collapse" aria-expanded="true">
+                                Categories
+                            </button>
+                            <div class="collapse" id="Category-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    {% for category in categories %}
+                                    <li><a href="{% url 'item:browse_items' %}?query={{query}}&category={{category.id}}" class="link-dark d-inline-flex text-decoration-none rounded">{{category.name}}</a></li>
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="border-top my-3"></li>
+              
+                        <li class="mb-2">
+                            <a href="{% url 'item:browse_items'%}">
+                                <label class="text-dark mb-2">Clear Filters:</label>
+                                <br />
+                                <button class="w-25 btn btn-sm btn-warning m-auto">Clear</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+   
+            <div class="col-lg-10 m-auto">
+                <div class="container py-5 pt-3">
+                <div class="row py-5">
+                    <div class="col-lg-5 m-auto text-center">
+                        <h1>Browse Items</h1>
+                        <h6 style="color:red">Just in...</h6>
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-lg-8 m-auto grey-color">
+                        <div class="row text-center pt-5 px-5">
+                            {% for item in items %}
+                            <div class="col-lg-4 mb-5 box-shadow">
+                                <a class="links" href="{% url 'item:detail' item.id %}">
+                                    <img src="{{item.image.url}}" class="img-fluid" alt="photo of {{item}}" />
+                                    <h5>NEW</h5>
+                                    <h6>{{item}}</h6>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

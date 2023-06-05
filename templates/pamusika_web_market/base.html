@@ -1,0 +1,118 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Pamusika Web Market | {% block title %} {% endblock%}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom_styles.css' %}" rel="stylesheet">
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</head>
+<body id="body">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Pamusika</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav me-auto mb-2 mb-md-0">
+                </div>
+                <div class="d-flex">
+                    <ul class="navbar-nav me-auto mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'pamusika_web_market:index' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'item:new' %}">New Item</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'item:browse_items' %}">Browse</a>
+                        </li>
+                    </ul>
+                    <div class="row navbar-nav">
+                        {% if request.user.is_authenticated %}
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="col-lg-5 nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'conversation:inbox' %}">
+                                <button class=" btn-lg btn-primary ">Inbox</button>
+                            </a>
+                        </div>
+
+                        <div class="col-lg-5 nav-item">
+                            <a class="nav-link" href="{% url 'dashboard:index' %}">
+                                <button class=" btn-lg btn-secondary">Dashboard</button>
+                            </a>
+                        </div>
+                        {% else %}
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="col-lg-5 nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'pamusika_web_market:signup' %}">
+                                <button class=" btn-lg btn-primary ">Signup</button>
+                            </a>
+                        </div>
+
+                        <div class="col-lg-5 nav-item">
+                            <a class="nav-link" href="{% url 'pamusika_web_market:login' %}">
+                                <button class=" btn-lg btn-success">Login</button>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+        {% block content %}
+
+        {% endblock %}
+
+    <footer class="footer  bg-dark text-muted">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row text-secondary">
+                        <h5>About</h5>
+                    </div>
+                    <div class="row">
+                        <div class="text-grey">
+                            <p>
+                                Ipsum hbnalsccp ajlcnas nkvgs ihasjkjnklas jjd  ahjsap
+                                Lorem Ipsum hbnalsccp ajlcnas nkvgs ihasjkjnklas jjd  ahjsap
+                                Lorem Ipsum hbnalsccp ajlcnas nkvgs ihasjkjnklas jjd  ahjsap
+                                Lorem Ipsum hbnalsccp ajlcnas nkvgs ihasjkjnklas jjd  ahjsap
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-8">
+
+                            </div>
+                            <div class="col-6 col-md-2 mb-3">
+                                <h5 class="text-secondary">Menu</h5>
+                                <ul class="nav flex-column">
+                                    <li class="nav-item mb-2"><a href="{% url 'pamusika_web_market:index'%}" class="nav-link p-0 text-muted">Home</a></li>
+                                    <li class="nav-item mb-2"><a href="{% url 'pamusika_web_market:contact'%}" class="nav-link p-0 text-muted">Contact</a></li>
+                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+ 

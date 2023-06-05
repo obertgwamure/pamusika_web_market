@@ -1,0 +1,154 @@
+{% extends 'pamusika_web_market/base.html' %}
+
+
+{% block title %} {{ title }} {% endblock%}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row text-center">
+        <div class="col-lg p-5">
+            <h1 class="h1">{{ title }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="container-fluid  grey-color">
+                <div class="row">
+                    <div class="col-lg-10 >
+                        <main class="form-signup w-100 m-auto">
+                            <form method="POST" action="." enctype="multipart/form-data"> <!--The enctype is to be able to upload images-->
+                            {% csrf_token %}
+                                <div class="form-floating">
+
+                                    <div class="container-fluid mt-3">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label>Category:</label>
+                                            </div>
+                                            <div class="col-lg">
+                                                {% if form_action == 'new' %}
+                                                {{form.category}}
+                                                {% else %}
+                                                {{form.category}} {{item.category}}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="container-fluid mt-3">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label>Name:</label>
+                                            </div>
+                                            <div class="col-lg">
+                                                {{form.name}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="container-fluid mt-3">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label>Description:</label>
+                                            </div>
+                                            <div class="col-lg">
+                                                {{form.description}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="container-fluid mt-3">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label>Price:</label>
+                                            </div>
+                                            <div class="col-lg">
+                                                {{form.price}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% if form_action == 'edit'%}
+                                    <div class="container-fluid mt-3">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label>Sold:</label>
+                                            </div>
+                                            <div class="col-lg">
+                                                {{form.is_sold}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+
+                                    <div class="container-fluid mt-3">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label>Image:</label>
+                                            </div>
+                                            <div class="col-lg">
+                                                {{form.image}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% if form.errors or form.non_field_errors%}
+                                    {% for field in form %}
+                                    {{field.errors}}
+                                    {% endfor %}
+
+                                    {{form.non_field_errors}}
+                                    {% endif %}
+
+                                    <div class="text-center">
+                                        <button class="w-50 mt-4 mb-5 btn btn-lg btn-success" type="submit">
+                                            {% if form_action == 'new' %}
+                                            Add Item
+                                            {% else %}
+                                            Apply
+                                            {% endif %}
+                                        </button>
+                                    </div>
+</form>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+<div class="container-fluid  grey-color">
+    <div class="row">
+        <div class="col-lg-3 m-auto">
+            <main class="form-signup w-100 m-auto">
+                <form method="POST" action=".">
+                    <div class="form-floating">
+
+                        <div class="mt-1">
+                            <div class="row">
+                                <label>Category:</label>
+                                {{form.category}}
+                            </div>
+                        </div>
+
+                   
+                    {% if form.errors or form.non_field_errors%}
+                    {% for field in form %}
+                    {{field.errors}}
+                    {% endfor %}
+
+                    {{form.non_field_errors}}
+                    {% endif %}
+
+                    <button class="w-100 btn btn-lg btn-success" type="submit">Add Item</button>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+
