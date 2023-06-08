@@ -7,14 +7,13 @@ from .forms import NewItemForm, EditItemForm
 # Item views
 
 def browse_items(request):
-     """This  creates a view for the users to browse items
+    """This  creates a view for the users to browse items
 
         :param request: HTTP protocol request
 
         :returns: renders the item/browse_items.html file
 
-        :rtype: render
-    """
+        :rtype: render"""
     query = request.GET.get('query', '')
     category_id = request.GET.get('category', 0)
     categories = Category.objects.all()
